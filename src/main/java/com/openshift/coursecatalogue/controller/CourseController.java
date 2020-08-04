@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.openshift.coursecatalogue.model.Courses;
-import com.openshift.coursecatalogue.model.Enrollments;
+import com.openshift.coursecatalogue.model.Enrollment;
 import com.openshift.coursecatalogue.model.Filter;
 
 import com.openshift.coursecatalogue.model.Users;
@@ -122,7 +122,7 @@ public class CourseController {
 		String s = "111111111";
 
 		LOG.info("Getting users of valu of id" + new ObjectId(userId));
-		Enrollments enrollCourse = courseService.findEnrollCourse(new ObjectId(userId));
+		Enrollment enrollCourse = courseService.findEnrollCourse(new ObjectId(userId));
 		Courses course = courseService.findOne(enrollCourse.getCourseId());
 		// usercourse.add(enrollCourse.getId());
 		// usercourse.add(enrollCourse.getCourseId().getName());
