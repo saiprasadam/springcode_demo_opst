@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.openshift.coursecatalogue.model.Enrollments;
+import com.openshift.coursecatalogue.model.Enrollment;
 import com.openshift.coursecatalogue.repositories.EnrollmentRepo;
 /**
  * @author kaleembasha.akbar
@@ -18,7 +18,7 @@ public class EnrollmentService {
 	private EnrollmentRepo enrollmentRepo;
 
 	
-	public List<Enrollments> findAll(){
+	public List<Enrollment> findAll(){
 		return enrollmentRepo.findAll();
 	}
 

@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.openshift.coursecatalogue.model.Courses;
-import com.openshift.coursecatalogue.model.Enrollments;
+import com.openshift.coursecatalogue.model.Enrollment;
 import com.openshift.coursecatalogue.repositories.CourseRepo;
 import com.openshift.coursecatalogue.repositories.EnrollmentRepo;
 
@@ -37,14 +37,13 @@ public class CourseService {
 		// TODO Auto-generated method stub
 		return courseRepo.findOne(courseId);
 	}
-public Enrollments findEnrollCourse(ObjectId objectId) {
+public Enrollment findEnrollCourse(ObjectId objectId) {
 		// TODO Auto-generated method stub
-			Enrollments enroll= new Enrollments();
+			Enrollment enroll= new Enrollment();
 		
-		 Enrollments lst=enrollmentRepo.findOne(objectId);
+		 Enrollment lst=enrollmentRepo.findOne(objectId);
 		/* for(Enrollment en:lst) {
 			 if(en.getCourse_id().equals(objectId)) {
-				 enroll.setCourse_id(en.getCourse_id());
 				 enroll.setStart_date(en.getStart_date());
 				 enroll.setEnd_date(en.getEnd_date());
 				 enroll.setStatus(en.getStatus());
