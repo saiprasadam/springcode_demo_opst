@@ -13,7 +13,6 @@ import org.springframework.stereotype.Repository;
 
 import com.openshift.coursecatalogue.model.Courses;
 import com.openshift.coursecatalogue.model.Enrollment;
-import com.openshift.coursecatalogue.model.Enrollments;
 
 /**
  * @author kaleembasha.akbar
@@ -26,11 +25,11 @@ public class EnrollmentRepo{
 	@Autowired
 	private MongoTemplate mongoTemplate;
 	
-	public List<Enrollments> findAll(){
-		return mongoTemplate.findAll(Enrollments.class);
+	public List<Enrollment> findAll(){
+		return mongoTemplate.findAll(Enrollment.class);
 	};
 
-	public Enrollments findOne(ObjectId objId) {
+	public Enrollment findOne(ObjectId objId) {
 		// TODO Auto-generated method stub
 		//System.out.println("-----"+objectId);
 		//LOG.info("courseId"+courseId)
@@ -41,12 +40,12 @@ public class EnrollmentRepo{
 			//	.ObjectId("34234234234234234234")));
 		//mongoTemplate.findById(query, Enrollment.class);
 		//return mongoTemplate.findAll(Enrollment.class);
-		Enrollments enrollVal=new Enrollments();
-		List<Enrollments> enroll=new ArrayList<>();
-		System.out.println(mongoTemplate.findById(objId.toString(), Enrollments.class));
+		Enrollment enrollVal=new Enrollment();
+		List<Enrollment> enroll=new ArrayList<>();
+		System.out.println(mongoTemplate.findById(objId.toString(), Enrollment.class));
 		//enroll=mongoTemplate.findById(objId.toString(), Enrollments.class);
-		enroll=mongoTemplate.findAll(Enrollments.class);
-		for(Enrollments en:enroll) {
+		enroll=mongoTemplate.findAll(Enrollment.class);
+		for(Enrollment en:enroll) {
 			if(en.getUserId().equals(objId.toString())) {
 				enrollVal.setUserId(en.getUserId());
 				enrollVal.setStartDate(en.getStartDate());
