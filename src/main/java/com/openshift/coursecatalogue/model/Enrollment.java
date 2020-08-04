@@ -1,6 +1,7 @@
 package com.openshift.coursecatalogue.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 /**
  * @author kaleembasha.akbar
@@ -13,15 +14,35 @@ public class Enrollment {
 	@Id
 	private String id;
 	
-	private Users user_id;
+//	private Users userId;
+	@DBRef(db="users")
+	private String userId;
 	
-	private Courses course_id;
+//	private Courses courseId;
+	@DBRef(db="courses")
+	private String courseId;
 	
-	private String start_date;
+	private String startDate;
 	
-	private String end_date;
+	private String endDate;
 	
-	private String status;
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public String getCourseId() {
+		return courseId;
+	}
+
+	public void setCourseId(String courseId) {
+		this.courseId = courseId;
+	}
+
+	private String state;
 	
 	public String getId() {
 		return id;
@@ -31,46 +52,44 @@ public class Enrollment {
 		this.id = id;
 	}
 
-	public Users getUser_id() {
-		return user_id;
+	/*public Users getUserId() {
+		return userId;
 	}
 
-	public void setUser_id(Users user_id) {
-		this.user_id = user_id;
+	public void setUserId(Users userId) {
+		this.userId = userId;
 	}
 
-	public Courses getCourse_id() {
-		return course_id;
+	public Courses getCourseId() {
+		return courseId;
 	}
 
-	public void setCourse_id(Courses course_id) {
-		this.course_id = course_id;
+	public void setCourseId(Courses courseId) {
+		this.courseId = courseId;
+	}
+*/
+	public String getStartDate() {
+		return startDate;
 	}
 
-	public String getStart_date() {
-		return start_date;
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
 	}
 
-	public void setStart_date(String start_date) {
-		this.start_date = start_date;
+	public String getEndDate() {
+		return endDate;
 	}
 
-	public String getEnd_date() {
-		return end_date;
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
 	}
 
-	public void setEnd_date(String end_date) {
-		this.end_date = end_date;
+	public String getState() {
+		return state;
 	}
 
-	public String getStatus() {
-		return status;
+	public void setState(String state) {
+		this.state = state;
 	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-	
-	
 
 }
