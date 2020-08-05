@@ -1,10 +1,12 @@
 package com.openshift.coursecatalogue.controller;
 
 import java.util.ArrayList;
-
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.bson.types.ObjectId;
+
 import org.slf4j.Logger;
 
 import org.slf4j.LoggerFactory;
@@ -23,6 +25,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.openshift.coursecatalogue.model.Courses;
 import com.openshift.coursecatalogue.model.Enrollment;
 import com.openshift.coursecatalogue.model.Filter;
@@ -34,6 +38,7 @@ import com.openshift.coursecatalogue.model.UserwithCourse;
 import com.openshift.coursecatalogue.service.CourseService;
 
 import com.openshift.coursecatalogue.service.UserService;
+
 
 /**
  * 
@@ -117,8 +122,9 @@ public class CourseController {
 	@RequestMapping(value = "getCourseStatus/{userId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	// @RequestMapping(value = "getCourseStatus", method = RequestMethod.POST,
 	// produces=MediaType.APPLICATION_JSON_VALUE)
-	public List<String> getCourseStatus(@PathVariable String userId) {
+	public String getCourseStatus(@PathVariable String userId) throws JsonProcessingException {
 		List<String> usercourse = new ArrayList<>();
+		Map map1=new HashMap();  
 		String s = "111111111";
 
 		LOG.info("Getting users of valu of id" + new ObjectId(userId));
@@ -126,12 +132,22 @@ public class CourseController {
 		Courses course = courseService.findOne(enrollCourse.getCourseId());
 		// usercourse.add(enrollCourse.getId());
 		// usercourse.add(enrollCourse.getCourseId().getName());
-		usercourse.add(enrollCourse.getCourseId());
-		usercourse.add(course.getName());
+		map1.put("id",enrollCourse.getCourseId());
+		map1.put("courseName",course.getName());
+		map1.put("startDate",enrollCourse.getStartDate());
+		map1.put("endDate",enrollCourse.getEndDate());
+		map1.put("state",enrollCourse.getState());
+		
+		ObjectMapper objectMapper = new ObjectMapper();
+	//	usercourse.add(enrollCourse.getCourseId());
+	/*	usercourse.add(course.getName());
 		usercourse.add(enrollCourse.getStartDate());
 		usercourse.add(enrollCourse.getEndDate());
 		usercourse.add(enrollCourse.getState());
+	*/	
+	//	Map<String, String> result = books.stream() .collect(Collectors.toMap(book -> book.getISBN, book -> book));
 
+		
 		// enrollCourse.getCourse_id()
 		// usercourse.add(e)
 		/*
@@ -141,6 +157,8 @@ public class CourseController {
 		 * usercourse.add(course.getName()); usercourse.add(users.getName());
 		 * usercourse.add(users.getEmail()); usercourse.add(course.getDescription());
 		 */
-		return usercourse;
+	//	return usercourse;
+		 String json = objectMapper.writeValueAsString(map1);
+		return json;
 	}
 }

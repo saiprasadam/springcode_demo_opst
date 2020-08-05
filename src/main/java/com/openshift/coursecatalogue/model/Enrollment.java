@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
  *
  * Model class for Enrollment Document
  */
-@Document
+@Document(collection = "enrollments")
 public class Enrollment {
 	
 	@Id

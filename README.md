@@ -1,1 +1,3 @@
-# springcode_demo_opst
+# digital-guru-server
+
+The backend architecture
