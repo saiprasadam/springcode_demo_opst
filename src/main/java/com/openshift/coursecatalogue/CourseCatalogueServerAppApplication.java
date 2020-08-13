@@ -13,7 +13,7 @@ public class CourseCatalogueServerAppApplication extends SpringBootServletInitia
 
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 
-        return application.sources(SpringBootWarDeploymentApplication.class);
+        return application.sources(CourseCatalogueServerAppApplication.class);
 
     }
 
